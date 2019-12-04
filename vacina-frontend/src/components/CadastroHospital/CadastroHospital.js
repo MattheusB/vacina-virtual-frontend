@@ -4,13 +4,13 @@ import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField'
 import '../../App.css';
-import axios from 'axios'
 
 class CadastroHospital extends Component{
     constructor(props){
         super(props);
         this.state={
             username: '',
+            senha: '',
             cidade: '',
             uf: '',
         }
@@ -26,24 +26,32 @@ class CadastroHospital extends Component{
                         />
                         <TextField 
                         hintText = 'Digite o seu username'
-                        floatingLabelText = 'username'
+                        floatingLabelText = 'Username'
                         onChange = {(event, newValue) => 
                         this.setState({username: newValue})}
                         />
                         <br/>
                         <TextField
+                        hintText = 'Digite a sua senha'
+                        floatingLabelText = 'Senha'
+                        onChange = {(event, newValue) =>
+                        this.setState({senha: newValue})}
+                        />
+                        <br/>
+                        <TextField
                         hintText = 'Digite a sua cidade'
-                        floatingLabelText = 'cidade'
+                        floatingLabelText = 'Cidade'
                         onChange = {(event, newValue) =>
                         this.setState({cidade: newValue})}
                         />
                         <br/>
                         <TextField
                         hintText = 'Digite o estado'
-                        floatingLabelText = 'uf'
+                        floatingLabelText = 'UF'
                         onChange = {(event, newValue) =>
                         this.setState({uf: newValue})}
                         />
+                        <br/>
                         <br/>
                         <RaisedButton label='Enviar' primary = {true} style = {style}
                         onClick = {(event) => this.handleClick(event)}/>
