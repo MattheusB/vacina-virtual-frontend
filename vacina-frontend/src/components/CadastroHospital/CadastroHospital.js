@@ -10,6 +10,7 @@ class CadastroHospital extends Component{
         super(props);
         this.state={
             username: '',
+            codigo: '',
             senha: '',
             cidade: '',
             uf: '',
@@ -24,6 +25,14 @@ class CadastroHospital extends Component{
                         <AppBar 
                         title = 'CadastroHospital'
                         />
+                        <TextField
+                        hintText = 'Digite o código do hospital'
+                        floatingLabelText = 'Código Hospital'
+                        onChange = {(event, newValue) =>
+                            this.setState({codigo: newValue})
+                        }
+                        />
+                        <br/>
                         <TextField 
                         hintText = 'Digite o seu username'
                         floatingLabelText = 'Username'
