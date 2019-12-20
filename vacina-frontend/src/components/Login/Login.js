@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import { MuiThemeProvider } from "material-ui/styles";
 import { AppBar, TextField } from "material-ui";
 import RaisedButton from "../../../../node_modules/material-ui/RaisedButton/RaisedButton";
+import axios from '../../../../node_modules/axios';
 
 class Login extends Component {
     constructor(props){
@@ -39,6 +40,41 @@ class Login extends Component {
                 </MuiThemeProvider>
             </div>
         );
+    }
+
+
+    handleClick(event) {
+        var apiBaseUrl = 'http://localhost:8000/login/';
+        var self = this;
+        var payload = {
+            'username': this.state.username,
+            'senha': this.state.senha
+        }
+
+        axios.post(apiBaseUrl, payload)
+        .then(function (response){
+            console.log(response);
+
+            if (console.data.code == 200){
+                console.log('Login realizado')
+                var telaUpload = [];
+
+                self.props.appContext.setState({paginaLogin: []})
+            }
+
+            else if (response.data.code == 204){
+                console.log('Usuário e senha não combinam')
+                alert('Usuário e senha não combinam')
+            }
+            else{
+                console.log('Usuário não existe')
+                alert('Usuário não existe')
+
+            }
+        })
+        .catch(function(error){
+            console.log(error);
+        });
     }
 }
 
