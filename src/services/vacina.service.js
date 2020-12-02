@@ -1,33 +1,33 @@
-import http from "../http-common";
+import api from "../api";
 
 class VacinaDataService {
-  getAll() {
-    return http.get("/vacina");
-  }
+    getAll() {
+        return api.get("/vacina");
+    }
 
-  get(id) {
-    return http.get(`/vacina/${id}`);
-  }
+    get(id) {
+        return api.get(`/vacina/${id}`);
+    }
 
-  create(data) {
-    return http.post("/vacina", data);
-  }
+    create(data) {
+        return api.post("/vacina", data);
+    }
 
-  update(id, data) {
-    return http.put(`/vacina/${id}`, data);
-  }
+    update(id, data) {
+        return api.put(`/vacina/${id}`, data);
+    }
 
-  delete(id) {
-    return http.delete(`/vacina/${id}`);
-  }
+    delete(id) {
+        return api.delete(`/vacina/${id}`);
+    }
 
-  deleteAll() {
-    return http.delete(`/vacina`);
-  }
+    deleteAll() {
+        return api.delete(`/vacina`);
+    }
 
-  findByCODIGO(codigo) {
-    return http.get(`/vacina?codigo=${codigo}`);
-  }
+    findByCODIGO(codigo) {
+        return api.get(`/vacina?codigo=${codigo}`);
+    }
 }
 
 export default new VacinaDataService();

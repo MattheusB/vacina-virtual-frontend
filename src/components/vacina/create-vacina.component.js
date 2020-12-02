@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import VacinaDataService from '../services/vacina.service';
+import VacinaDataService from '../../services/vacina.service';
 
 export default class CreateVacina extends Component {
     constructor(props) {
@@ -8,16 +8,12 @@ export default class CreateVacina extends Component {
         this.onChangeCodigo = this.onChangeCodigo.bind(this);
         this.onChangeNome = this.onChangeNome.bind(this);
         this.onChangeDosagem = this.onChangeDosagem.bind(this);
-        this.saveVacina = this.saveVacina.bind(this);
-        this.newVacina = this.newVacina.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
-            id: null,
             codigo: '',
             nome: '',
-            dosagem: '',
-            
-            submitted: false
+            dosagem: ''
         }
     }
 
@@ -39,57 +35,46 @@ export default class CreateVacina extends Component {
         });
     }
     
-    saveVacina() {
+    onSubmit(e) {
+        e.preventDefault();
+
+        console.log(`Vacina cadastrada:`);
+        console.log(`Código: ${this.state.codigo}`);
+        console.log(`Nome: ${this.state.nome}`);
+        console.log(`Dosagem: ${this.state.dosagem}`);
+
         var data = {
             codigo: this.state.codigo,
             nome: this.state.nome,
             dosagem: this.state.dosagem
         };
-    
+
         VacinaDataService.create(data)
-            .then(response => {
-                this.setState({
-                    id: response.data.id,
-                    codigo: response.data.codigo,
-                    nome: response.data.nome,
-                    dosagem: response.data.dosagem,
-    
-                    submitted: true
-                });
-                console.log(response.data);
+            .then(res => {
+                console.log(res.data);
             })
             .catch(e => {
                 console.log(e);
             });
-    }
-    
-    newVacina() {
+        
         this.setState({
-            id: null,
-            codigo: "",
-            nome: "",
-            dosagem: false,
-
-            submitted: false
+            codigo: '',
+            nome: '',
+            dosagem: ''
         });
     }
 
     render() {
         return (
-            <form>
-                {this.state.submitted ? (
+            <div style={{marginTop: 10}}>
+                <h4 align="center">Cadastrar vacina</h4>
+                <br></br>
+                <form onSubmit={this.onSubmit}>
                     <div>
-                        <h4>You submitted successfully!</h4>
-                        <button class="btn btn-success" onClick={this.newVacina}>
-                            Adicionado
-                        </button>
-                    </div>
-                ) : (
-                    <div>
-                        <div class="form-group">
-                            <label for="codigo">Código: </label>
+                        <div className="form-group">
+                            <label htmlFor="codigo">Código: </label>
                             <input  type="text" 
-                                    class="form-control"
+                                    className="form-control"
                                     value={this.state.codigo}
                                     onChange={this.onChangeCodigo}
                                     id="codigo"
@@ -97,10 +82,10 @@ export default class CreateVacina extends Component {
                                     required
                                     />
                         </div>
-                        <div class="form-group">
-                            <label for="nome">Nome: </label>
+                        <div className="form-group">
+                            <label htmlFor="nome">Nome: </label>
                             <input  type="text" 
-                                    class="form-control"
+                                    className="form-control"
                                     value={this.state.nome}
                                     onChange={this.onChangeNome}
                                     id="nome"
@@ -108,23 +93,24 @@ export default class CreateVacina extends Component {
                                     required
                                     />
                         </div>
-                        <div class="form-group">
-                            <label for="dosagem">Dosagem (ml): </label>
+                        <div className="form-group">
+                            <label htmlFor="dosagem">Dosagem (ml): </label>
                             <input  type="number"
-                                    class="form-control"
+                                    className="form-control"
                                     value={this.state.dosagem}
                                     onChange={this.onChangeDosagem}
                                     id="dosagem"
                                     name="dosagem"
                                     required
-                                    />
+                                    min="0"
+                                    max="100"/>
                         </div>
-                        <button onClick={this.saveVacina} class="btn btn-success">
-                            Cadastrar
-                        </button>
+                        <div align="center">
+                            <input type="submit" value="Cadastrar" className="btn btn-primary btn-sm" />
+                        </div>
                     </div>
-                )}
-            </form>
-        );
+                </form>
+            </div>
+        )
     }
 }
