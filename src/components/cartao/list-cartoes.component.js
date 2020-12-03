@@ -1,22 +1,28 @@
 import React, { Component } from 'react';
-import VacinaDataService from '../../services/vacina.service';
+import CartaoDataService from '../../services/cartao.service';
 import { Link } from "react-router-dom";
 
-const Vacina = props => (
+const Cartao = props => (
     <tr>
-        <td>{props.vacina.codigo}</td>
-        <td>{props.vacina.nome}</td>
-        <td>{props.vacina.dosagem}</td>
+        <td>{props.cartao.sus}</td>
+        <td>{props.cartao.cpf}</td>
+        <td>{props.cartao.nome}</td>
+        <td>{props.cartao.nascimento}</td>
         <td>
             <div className="row">
                 <div className="col-md-3">
-                    <Link to={"/vacina/update/" + props.vacina._id}>
+                    <Link to={"/cartao/update/" + props.cartao._id}>
                         <button type="button" className="btn btn-warning btn-sm">Editar</button>
                     </Link>
                 </div>
                 <div className="col-md-3">
-                    <Link to={"/vacina/delete/" + props.vacina._id}>
+                    <Link to={"/cartao/delete/" + props.cartao._id}>
                         <button type="button" className="btn btn-danger btn-sm">Excluir</button>
+                    </Link>
+                </div>
+                <div className="col-md-3">
+                    <Link to={"/cartao/" + props.cartao._id + "/vacinas"}>
+                        <button type="button" className="btn btn-success btn-sm">Vacinas</button>
                     </Link>
                 </div>
             </div>
@@ -27,39 +33,39 @@ const Vacina = props => (
 export default class ListVacinas extends Component {
     constructor(props) {
         super(props);
-        this.state = { vacinas: [] };
+        this.state = { cartoes: [] };
 
         this.componentDidMount = this.componentDidMount.bind(this);
-        this.removeAllVacinas = this.removeAllVacinas.bind(this);
-        this.getAllVacinas = this.getAllVacinas.bind(this);
-        this.listVacinas = this.listVacinas.bind(this);
+        this.deleteAllCartoes = this.deleteAllCartoes.bind(this);
+        this.getAllCartoes = this.getAllCartoes.bind(this);
+        this.listCartoes = this.listCartoes.bind(this);
     }
 
     componentDidMount() {
-       this.getAllVacinas();
+       this.getAllCartoes();
     }
 
-    getAllVacinas() {
-        VacinaDataService.getAll()
+    getAllCartoes() {
+        CartaoDataService.getAll()
             .then(res => {
-                this.setState({ vacinas: res.data });
+                this.setState({ cartoes: res.data });
             })
             .catch(function (error) {
                 console.log(error);
             })
     }
 
-    listVacinas() {
-        return this.state.vacinas.map(function (vac, id) {
-            return <Vacina vacina={vac} key={id} />;
+    listCartoes() {
+        return this.state.cartoes.map(function (car, id) {
+            return <Cartao cartao={car} key={id} />;
         })
     }
 
-    removeAllVacinas() {
-        VacinaDataService.deleteAll()
+    deleteAllCartoes() {
+        CartaoDataService.deleteAll()
             .then(response => {
                 console.log(response.data);
-                this.getAllVacinas();
+                this.getAllCartoes();
             })
             .catch(e => {
                 console.log(e);
@@ -69,29 +75,30 @@ export default class ListVacinas extends Component {
     render() {
         return (
             <div style={{ marginTop: 10 }}>
-                <h4>Lista de vacinas</h4>
+                <h4>Lista de cartões</h4>
                 <br></br>
                 <table className="table table-striped" style={{ marginTop: 20 }} >
                     <thead>
                         <tr>
-                            <th>Código</th>
+                            <th>SUS</th>
+                            <th>CPF</th>
                             <th>Nome</th>
-                            <th>Dosagem (ml)</th>
+                            <th>Nascimento</th>
                             <th>Ações</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {this.listVacinas()}
+                        {this.listCartoes()}
                     </tbody>
                 </table>
                 <div className="row">
                     <div className="col-md-1">
-                        <Link to="/vacina/create">
+                        <Link to="/cartao/create">
                             <button className="btn btn-primary btn-sm">Cadastrar</button>
                         </Link>
                     </div>
                     <div className="col-md-2">
-                        <button className="btn btn-dark btn-sm" onClick={this.removeAllVacinas}>Remover vacinas</button>
+                        <button className="btn btn-dark btn-sm" onClick={this.deleteAllCartoes}>Remover cartões</button>
                     </div>
                 </div>
             </div>

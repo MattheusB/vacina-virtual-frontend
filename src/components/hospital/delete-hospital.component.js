@@ -1,17 +1,17 @@
 import { Component } from 'react';
 import { Button, Modal } from 'react-bootstrap';
-import VacinaDataService from '../../services/vacina.service';
+import HospitalDataService from '../../services/hospital.service';
 
-export default class DeleteVacina extends Component {
+export default class DeleteHospital extends Component {
     constructor(props) {
         super(props);
 
-        this.deleteVacina = this.deleteVacina.bind(this);
+        this.deleteHospital = this.deleteHospital.bind(this);
         this.voltar = this.voltar.bind(this);
     }
-
-    deleteVacina() {
-        VacinaDataService.delete(this.props.match.params.id)
+    
+    deleteHospital() {
+        HospitalDataService.delete(this.props.match.params.id)
             .then(res => {
                 console.log(res.data);
             })
@@ -19,18 +19,18 @@ export default class DeleteVacina extends Component {
                 console.log(e);
             });
 
-        this.props.history.push("/vacinas")
+        this.props.history.push("/hospitais")
     }
 
     voltar() {
-        this.props.history.push("/vacinas")
+        this.props.history.push("/hospitais")
     }
 
     render() {
         return (
             <Modal.Dialog>
                 <Modal.Header closeButton onClick={this.voltar}>
-                    <Modal.Title>Excluir vacina</Modal.Title>
+                    <Modal.Title>Excluir hospital</Modal.Title>
                 </Modal.Header>
 
                 <Modal.Body>
@@ -39,7 +39,7 @@ export default class DeleteVacina extends Component {
 
                 <Modal.Footer>
                     <Button onClick={this.voltar} variant="btn btn-secondary btn-sm">Fechar</Button>
-                    <Button onClick={this.deleteVacina} variant="btn btn-danger btn-sm">Excluir</Button>
+                    <Button onClick={this.deleteHospital} variant="btn btn-danger btn-sm">Excluir</Button>
                 </Modal.Footer>
             </Modal.Dialog>
         )

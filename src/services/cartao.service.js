@@ -1,4 +1,4 @@
-import http from "../http-common";
+import http from "../api";
 
 class CartaoDataService {
   getAll() {
@@ -9,6 +9,10 @@ class CartaoDataService {
     return http.get(`/cartao/${id}`);
   }
 
+  getVacinasCartao(id) {
+    return http.get(`/cartao/${id}/vacinas`);
+  }
+
   create(data) {
     return http.post("/cartao", data);
   }
@@ -17,8 +21,8 @@ class CartaoDataService {
     return http.put(`/cartao/${id}`, data);
   }
 
-  insertVacina(sus, codigo) {
-    return http.patch(`/cartao/${sus}/${codigo}`);
+  vacinar(id, codigo) {
+    return http.patch(`/cartao/${id}/${codigo}`);
   }
 
   delete(id) {

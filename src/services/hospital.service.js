@@ -1,32 +1,32 @@
-import http from "../http-common";
+import api from "../api";
 
 class HospitalDataService {
   getAll() {
-    return http.get("/hospital");
+    return api.get("/hospital");
   }
 
   get(id) {
-    return http.get(`/hospital/${id}`);
+    return api.get(`/hospital/${id}`);
   }
 
   create(data) {
-    return http.post("/hospital", data);
+    return api.post("/hospital", data);
   }
 
   update(id, data) {
-    return http.put(`/hospital/${id}`, data);
+    return api.put(`/hospital/${id}`, data);
   }
 
   delete(id) {
-    return http.delete(`/hospital/${id}`);
+    return api.delete(`/hospital/${id}`);
   }
 
   deleteAll() {
-    return http.delete(`/hospital`);
+    return api.delete(`/hospital`);
   }
 
   findByCNES(cnes) {
-    return http.get(`/hospital?cnes=${cnes}`);
+    return api.get(`/hospital?cnes=${cnes}`);
   }
 }
 
