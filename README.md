@@ -31,12 +31,6 @@ Qualquer pessoa que possua um ponto de vacinação.
 
 # Instalação
 
-Para criar o banco de dados local usando MongoDB, rode este comando.
-
-```sh
-docker run -d --name vacina-virtual -p 27888:27017 -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=admin mongo 
-```
-
 Para instalar as dependências do NodeJS
 
 ```sh
