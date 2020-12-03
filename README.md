@@ -1,70 +1,50 @@
-# Getting Started with Create React App
+# vacina-virtual
+Repositório destinado ao projeto pessoal de: João Lucas, José Manoel, Lucas Fernandes e Mattheus Brito.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Vacina Virtual - "Seu registro de saúde na palma da mão!"
+Plataforma web destinada aos PSF's que são pontos de vacinas.
 
-## Available Scripts
+# Motivação
+Considerando a proposta feita por Lucas de criar uma aplicação web que tenha utilidade no mundo real, e levando em conta a grande dificuldade que a sociedade tem de manter seus cartões de vacinas intactos e até mesmo de lembrar de levá-los no momento de tomar a vacina. Surgiu a ideia de criar uma plataforma web permitindo que essas pessoas tomem suas vacinas com mais facilidade.
 
-In the project directory, you can run:
+# Público Alvo
+A princípio, o público desse site são necessariamente postos médicos e hospitais que são pontos de vacinas. No entanto, podendo mudar levemente o seu público depois de algum tempo no ar, então poderia se direcionar não só a hospitais e postos médicos, mas sim para o paciente também.
 
-### `npm start`
+# Ferramentas utilizadas
+- Mongoose
+- Express
+- React
+- NodeJS
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# Arquitetura
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+![Arquitetura](/architeture.jpeg)
 
-### `npm test`
+# Pontos fortes
+Possui um grande diferencial de ser uma plataforma acessível para qualquer um que tenha acesso a um navegador de internet. Sendo assim, simplifica a "burocracia" no processo de vacinação.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Como funciona?
+Pacientes cadastram seu cartão de vacina fornecendo informações sobre o mesmo. Após isso, o ponto de vacinação pode editar o cartão de vacina virtual para adicionar as vacinas que o paciente tomou.
 
-### `npm run build`
+# Quem pode usar?
+Qualquer pessoa que possua um ponto de vacinação.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Instalação
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Para criar o banco de dados local usando MongoDB, rode este comando.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```sh
+docker run -d --name vacina-virtual -p 27888:27017 -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=admin mongo 
+```
 
-### `npm run eject`
+Para instalar as dependências do NodeJS
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```sh
+npm install
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Para rodar o frontend
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```sh
+npm start
+```
