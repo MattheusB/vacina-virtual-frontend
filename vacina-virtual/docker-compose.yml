@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  server:
+    build:
+      context: ../../vacina-virtual-backend
+      dockerfile: Dockerfile
+    image: vacina-virtual-backend
+    container_name: server
+    command: npm run start
+    volumes:
+      - ../../vacina-virtual-backend/:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - "4000:4000"
+    depends_on:
+      - mongo
+    env_file: ../../vacina-virtual-backend/.env
+    environment:
+      - NODE_ENV=development
+    networks:
+      - app-network
+  mongo:
+    image: mongo:latest
+    container_name: db
+    volumes:
+      - data-volume:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin
+    ports:
+      - "27017:27017"
+    networks:
+      - app-network
+  client:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    image: vacina-virtual-frontend
+    container_name: client
+    command: npm start
+    volumes:
+      - ../:/usr/src/app
+      - /usr/src/app/node_modules
+    depends_on:
+      - server
+    ports:
+      - "3000:3000"
+    networks:
+      - app-network
+
+networks:
+    app-network:
+        driver: bridge
+
+volumes:
+    data-volume:
+    node_modules:
+    web-root:
+      driver: local
