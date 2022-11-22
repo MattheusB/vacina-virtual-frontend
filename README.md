@@ -16,10 +16,6 @@ A princípio, o público desse site são necessariamente postos médicos e hospi
 - React
 - NodeJS
 
-# Arquitetura
-
-![Arquitetura](/architeture.jpeg)
-
 # Pontos fortes
 Possui um grande diferencial de ser uma plataforma acessível para qualquer um que tenha acesso a um navegador de internet. Sendo assim, simplifica a "burocracia" no processo de vacinação.
 
@@ -42,3 +38,7 @@ Para rodar o frontend
 ```sh
 npm start
 ```
+
+# Rodando no Docker
+
+Instale o docker em sua máquina e na pasta `/vacina-virtual` execute o comando `docler-compose up -d`.
